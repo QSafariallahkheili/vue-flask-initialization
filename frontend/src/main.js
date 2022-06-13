@@ -1,7 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import store from "./store/store.js";
-//require('../node_modules/maplibre-gl/dist/maplibre-gl.css')
+import vuetify from './plugins/vuetify'
 import '../node_modules/maplibre-gl/dist/maplibre-gl.css';
 import 'bootstrap/dist/css/bootstrap.css';
-createApp(App).use(store).mount('#app')
+import { loadFonts } from './plugins/webfontloader'
+
+loadFonts()
+
+createApp(App)
+  .use(vuetify)
+  .use(store)
+  .mount('#app')

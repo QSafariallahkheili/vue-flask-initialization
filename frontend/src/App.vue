@@ -4,7 +4,6 @@
 </template>
 
 <script setup>
-
 import { ref } from 'vue'
 import MyButton from '@/components/Button.vue'
 import MyMap from '@/components/MyMap.vue'
@@ -39,5 +38,5 @@ html, body {
   width: 100%;
   height: 100%;
 }
-</style>
 
+</style>
