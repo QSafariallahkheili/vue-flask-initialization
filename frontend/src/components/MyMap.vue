@@ -26,11 +26,6 @@ onMounted(() => {
         maxZoom: store.state.map.maxZoom,
         maxPitch: store.state.map.maxPitch
     });
-
-
-
-   store.dispatch("getTreesOSM/getGeomArea")
-
 })
 
 onUnmounted(() => {
