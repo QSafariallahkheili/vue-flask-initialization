@@ -37,6 +37,9 @@ const getTreesOSM = {
                         data : AOI,
                         bbox: turf.bbox(AOI)
                     })
+                    .then(response=>{
+                        console.log(response.data)
+                    })
                     
                 }
                 
