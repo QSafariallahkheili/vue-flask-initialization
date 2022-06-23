@@ -41,7 +41,7 @@ onUnmounted(() => {
 .map-wrap {
  position: relative;
   width: 100%;
-  height: 80vh; /* calculate height of the screen minus the heading */
+  height: 70vh; /* calculate height of the screen minus the heading */
 }
 
 .map {
