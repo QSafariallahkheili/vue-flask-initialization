@@ -5,12 +5,16 @@ import * as turf from '@turf/turf'
 import maplibregl from 'maplibre-gl'
 import {TreeModel} from '../../utils/TreeModel';
 import * as THREE from 'three'
+import {ScenegraphLayer} from '@deck.gl/mesh-layers';
+import {MapboxLayer} from '@deck.gl/mapbox';
+import {Deck, MapView, OrthographicView} from '@deck.gl/core';
 
 
 const getTreesOSM = {
     namespaced: true,
     state: {
         draw: null,
+        ids: []
     },
     mutations:{
 
@@ -44,10 +48,12 @@ const getTreesOSM = {
                 }
                 
             })
+
+         
                     
         },
         
-        retrieveTrees({rootState}){
+        retrieveTrees({state, rootState}){
             HTTP
             .get('retrieve-trees')
             .then(response=>{
@@ -80,9 +86,33 @@ const getTreesOSM = {
                 
                 //rootState.map.map.addLayer(TreeModel(obj[1].lng, obj[1].lat, makeid(5)));
                 for (let i=0; i<response.data.features.length; i++){
+                    state.ids.push(makeid(5))
+                } 
+                /*for (let i=0; i<response.data.features.length; i++){
                     rootState.map.map.addLayer(TreeModel(response.data.features[i].geometry.coordinates[0], response.data.features[i].geometry.coordinates[1],
-                     makeid(5)));
-                }
+                     state.ids[i]));
+                }*/
+                
+                
+                const myDeckLayer = new MapboxLayer({
+                    id: 'hexagon2D',
+                    type: ScenegraphLayer,
+                    data: response.data.features,
+                    pickable: true,
+                    scenegraph: 'https://raw.githubusercontent.com/QSafariallahkheili/ligfinder_refactor/master/GenericNewTree.glb',
+                    getPosition: f => f.geometry.coordinates,
+                    getOrientation: d => [0, Math.random() * 180, 90],
+                    sizeScale: 5,
+                    _lighting: 'pbr'
+                   
+                });
+                rootState.map.map.addLayer(myDeckLayer, "building-3d");
+                
+
+                
+
+                
+
             })
         }
     },

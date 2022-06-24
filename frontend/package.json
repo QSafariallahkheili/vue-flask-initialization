@@ -8,6 +8,12 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
+    "@deck.gl/aggregation-layers": "^8.7.12",
+    "@deck.gl/core": "^8.7.12",
+    "@deck.gl/geo-layers": "^8.7.12",
+    "@deck.gl/layers": "^8.7.12",
+    "@deck.gl/mapbox": "^8.7.12",
+    "@deck.gl/mesh-layers": "^8.7.12",
     "@mapbox/mapbox-gl-draw": "^1.3.0",
     "@mdi/font": "5.9.55",
     "@turf/turf": "^6.5.0",
