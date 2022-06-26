@@ -41,11 +41,7 @@ onUnmounted(() => {
 .map-wrap {
  position: relative;
   width: 100%;
-<<<<<<< Updated upstream
-  height: 70vh; /* calculate height of the screen minus the heading */
-=======
-  height: 80vh; /* calculate height of the screen minus the heading */
->>>>>>> Stashed changes
+  height:100vh;
 }
 
 .map {
