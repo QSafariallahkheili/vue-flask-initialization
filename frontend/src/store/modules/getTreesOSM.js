@@ -11,6 +11,7 @@ const getTreesOSM = {
     namespaced: true,
     state: {
         draw: null,
+        ids: []
     },
     mutations:{
 
@@ -47,7 +48,13 @@ const getTreesOSM = {
                     
         },
         
-        retrieveTrees({rootState}){
+        deleteTrees(){
+            // fhfzj
+            HTTP
+            .get('delete-trees')
+        
+        },
+        retrieveTrees({state,rootState}){
             HTTP
             .get('retrieve-trees')
             .then(response=>{
@@ -78,11 +85,22 @@ const getTreesOSM = {
                 }
                 console.log(response.data.features.length)
                 
+                // TODO: Speichere alle IDs der Layer in einer Variable, um beim Löschen des Layers alle Bäume zu finden
+
                 //rootState.map.map.addLayer(TreeModel(obj[1].lng, obj[1].lat, makeid(5)));
                 for (let i=0; i<response.data.features.length; i++){
-                    rootState.map.map.addLayer(TreeModel(response.data.features[i].geometry.coordinates[0], response.data.features[i].geometry.coordinates[1],
-                     makeid(5)));
+                
+                    state.ids.push(makeid(10))                
+                
                 }
+                
+                //rootState.map.map.addLayer(TreeModel(obj[1].lng, obj[1].lat, makeid(5)));
+              /*
+                for (let i=0; i<response.data.features.length; i++){
+                    rootState.map.map.addLayer(TreeModel(response.data.features[i].geometry.coordinates[0], response.data.features[i].geometry.coordinates[1],
+                    state.ids[i]));
+                } */
+                
             })
         }
     },

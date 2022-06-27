@@ -82,6 +82,7 @@ def get_tree():
 
     return "ok"
 
+
 @app.route('/retrieve-trees', methods=["GET", "POST"])
 def retrieve_trees():
     connection = connect()
@@ -100,3 +101,16 @@ def retrieve_trees():
 
     return data
 
+
+@app.route('/delete-trees', methods=["GET", "POST"])
+def delete_trees():
+    connection = connect()
+    cursor = connection.cursor()
+    delete_tree_query =''' 
+        drop table if exists tree;
+        '''
+    cursor.execute(delete_tree_query)
+    connection.commit()
+    connection.close()
+
+    return "Ok"
